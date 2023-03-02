@@ -25,7 +25,7 @@ app.post("/", async (req, res) => {
     max_tokens: 3000,
     temperature: 0.7,
   });
-  res.json({ botResponse: response.data.choices[0].text });
+  res.json({ botResponse: response.data.choices[0].message });
 });
 
 app.listen(port, () => {
