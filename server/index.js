@@ -23,7 +23,7 @@ app.post("/", async (req, res) => {
     model: "gpt-3.5-turbo",
     messages: [{role: "user", content: message}],
     max_tokens: 3000,
-    temperature: 0.7,
+    temperature: 0.5,
   });
   res.json({ botResponse: completion.data.choices[0].message.content});
   console.log(completion.data.choices[0].message);
