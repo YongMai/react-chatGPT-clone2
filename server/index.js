@@ -20,7 +20,7 @@ app.use(cors());
 
 app.post("/", async (req, res) => {
   // Check if the request origin is allowed
-  const allowedOrigins = ['https://*.yongmai.xyz', 'https://yongmai.netlify.app'];
+  const allowedOrigins = ['https://gptturbo.yongmai.xyz', 'https://yongmai.netlify.app','https://chat.yongmai.xyz','https://*.yongmai.xyz','https://yongmai.xyz'];
   const origin = req.get('Origin');
 
   if (!allowedOrigins.includes(origin)) {
