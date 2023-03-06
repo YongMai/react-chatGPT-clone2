@@ -32,6 +32,13 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/", async (req, res) => {
+  // Check if the request origin is allowed
+  const allowedOrigins = ['https://yongmai.xyz'];
+  const origin = req.get('Origin');
+
+  if (!allowedOrigins.includes(origin)) {
+    return res.status(403).send('Forbidden');
+  }
   const { message } = req.body;
   const completion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
