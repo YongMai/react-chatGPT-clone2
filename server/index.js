@@ -4,20 +4,6 @@ const express = require("express");
 const app = express();
 const port = 4000;
 
-// Middleware to check the origin of the request
-app.use((req, res, next) => {
-  const allowedOrigins = ['https://*.yongmai.xyz', 'https://yongmai.netlify.app'];
-
-  const origin = req.get('Origin');
-
-  // If the origin is allowed, set the CORS headers
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-    res.setHeader('Access-Control-Allow-Methods', 'POST');
-  }
-
-  next();
-});
 
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
