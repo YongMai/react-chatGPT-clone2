@@ -6,11 +6,11 @@ const port = 4000;
 
 // Middleware to check the origin of the request
 app.use((req, res, next) => {
-  const allowedOrigins = ['https://yongmai.xyz'];
+  const allowedOrigins = ['https://yongmai.xyz', 'https://www.yongmai.xyz'];
   const origin = req.get('Origin');
 
   // If the origin is allowed, set the CORS headers
-  if (allowedOrigins.includes(origin)) {
+  if (allowedOrigins.some(o => origin.includes(o))) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Methods', 'POST');
   }
@@ -33,10 +33,10 @@ app.use(cors());
 
 app.post("/", async (req, res) => {
   // Check if the request origin is allowed
-  const allowedOrigins = ['https://yongmai.xyz'];
+  const allowedOrigins = ['https://yongmai.xyz', 'https://www.yongmai.xyz'];
   const origin = req.get('Origin');
 
-  if (!allowedOrigins.includes(origin)) {
+  if (!allowedOrigins.some(o => origin.includes(o))) {
     return res.status(403).send('Forbidden');
   }
   const { message } = req.body;
