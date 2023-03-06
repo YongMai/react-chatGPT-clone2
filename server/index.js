@@ -6,7 +6,8 @@ const port = 4000;
 
 // Middleware to check the origin of the request
 app.use((req, res, next) => {
-  const allowedOrigins = ['https://*.yongmai.xyz'];
+  const allowedOrigins = ['https://*.yongmai.xyz', 'https://yongmai.netlify.app'];
+
   const origin = req.get('Origin');
 
   // If the origin is allowed, set the CORS headers
@@ -33,7 +34,7 @@ app.use(cors());
 
 app.post("/", async (req, res) => {
   // Check if the request origin is allowed
-  const allowedOrigins = ['https://*.yongmai.xyz'];
+  const allowedOrigins = ['https://*.yongmai.xyz', 'https://yongmai.netlify.app'];
   const origin = req.get('Origin');
 
   if (!allowedOrigins.includes(origin)) {
