@@ -25,6 +25,8 @@ app.post("/", async (req, res) => {
 
   if (!allowedOrigins.includes(origin)) {
     return res.status(403).send('Forbidden');
+    console.log('Allowed origins:', allowedOrigins);
+  console.log('Request origin:', origin);
   }
   const { message } = req.body;
   const completion = await openai.createChatCompletion({
