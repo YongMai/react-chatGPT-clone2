@@ -32,7 +32,7 @@ app.post("/", async (req, res) => {
   const completion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [{role: "user", content: message}],
-    max_tokens: 3000,
+    max_tokens: 500,
     temperature: 0.5,
   });
   res.json({ botResponse: completion.data.choices[0].message.content});
