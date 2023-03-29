@@ -36,7 +36,7 @@ app.post("/", async (req, res) => {
     temperature: 0.5,
   });
   res.json({ botResponse: completion.data.choices[0].message.content});
-  console.log(message);
+  console.log('requests:',message);
   console.log(completion.data.choices[0].message);
 });
 
