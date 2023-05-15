@@ -18,6 +18,11 @@ const cors = require("cors");
 app.use(bodyParser.json());
 app.use(cors());
 
+function approximateTokenCount(text) {
+  // Approximate token count based on number of characters
+  return text.trim().length;
+}
+
 app.post("/", async (req, res) => {
   // Check if the request origin is allowed
   const allowedOrigins = ['https://gptturbo.yongmai.xyz', 'https://yongmai.netlify.app','https://chat.yongmai.xyz','https://*.yongmai.xyz','https://yongmai.xyz'];
@@ -29,6 +34,15 @@ app.post("/", async (req, res) => {
     return res.status(403).send('Forbidden');
   }
   const { message } = req.body;
+  
+   const tokenCount = approximateTokenCount(message);
+  
+  // Check token count and return appropriate response
+  if (tokenCount > 500) {
+    res.json({ botResponse: '输入的字符过长，请控制在500字以内'});
+    return res.status(404);
+  }
+  
   const completion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [{role: "user", content: message}],
